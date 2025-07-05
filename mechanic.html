@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Mechanic Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Hide all slides by default for the tips section slider */
+    .slide {
+      display: none;
+    }
+    /* Add a fade effect for transitions for the tips section slider */
+    .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+      from {opacity: .4}
+      to {opacity: 1}
+    }
+
+    /* 3D Spin Animation for Hero Image */
+    .spin-3d {
+      animation: spin-3d 4s ease-in-out infinite alternate; /* Slower, continuous, and alternates direction */
+      transform-style: preserve-3d; /* Crucial for 3D transformations */
+    }
+
+    @keyframes spin-3d {
+      0% {
+        transform: rotateY(0deg) scale(0.8); /* Start slightly smaller and no rotation */
+        opacity: 0.5;
+      }
+      50% {
+        transform: rotateY(180deg) scale(1.1); /* Rotate 180 degrees and slightly larger */
+        opacity: 1;
+      }
+      100% {
+        transform: rotateY(360deg) scale(0.8); /* Complete a full rotation and shrink back */
+        opacity: 0.5;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Header Navigation -->
+  <header class="bg-white shadow py-2 sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+        <!-- Left Links -->
+        <nav class="flex items-center space-x-4 md:space-x-4">
+            <a href="#hero-about" class="text-gray-800 font-semibold hover:bg-blue-100 rounded-md p-2 text-sm md:text-base">Home</a>
+            <a href="#hero-about" class="text-gray-800 font-semibold hover:bg-blue-100 rounded-md p-2 text-sm md:text-base">About</a>
+            <a href="#services" class="text-gray-800 font-semibold hover:bg-blue-100 rounded-md p-2 text-sm md:text-base">Services</a>
+        </nav>
+        <!-- Logo -->
+        <img src="data:image/webp;base64,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" alt="AutoCare Logo" class="h-10 md:h-12">
+        <!-- Right Links -->
+        <nav class="flex items-center space-x-1 md:space-x-4">
+            <a href="#how-it-works" class="text-gray-800 font-semibold hover:bg-blue-100 rounded-md p-2 text-sm md:text-base">Our Process</a>
+            <a href="#explore" class="text-gray-800 font-semibold hover:bg-blue-100 rounded-md p-2 text-sm md:text-base">Explore</a>
+            <a href="#contact" class="text-gray-800 font-semibold hover:bg-blue-100 rounded-md p-2 text-sm md:text-base">Contact</a>
+        </nav>
+    </div>
+  </header>
+
+  <!-- Hero and About Section -->
+  <section id="hero-about" class="bg-gray-100 py-12 px-6">
+    <div class="max-w-4xl mx-auto bg-blue-300 rounded-lg shadow-lg p-8 text-center">
+      <h1 class="text-4xl font-bold text-blue-800 mb-4">Expert Evans Car Care, Unbeatable Service </h1>
+      <p class="text-gray-600 mb-6">Your trusted partner for all auto repair and maintenance needs.</p>
+     <p class="text-blue-600 mb-6">Our mission is to provide top-quality auto repairs with honesty and integrity. Using the latest technology and a compassionate team, we make every service visit straightforward and stress-free.</p>
+      <img src="https://th.bing.com/th/id/OIP.ZfkRHc_LRBAdG5tMVyexFAHaHY?w=191&h=190&c=7&r=0&o=7&pid=1.7&rm=3?text=Mechanic" alt="Auto Repair" class="mx-auto rounded-lg mb-6 w-48 h-48 object-cover spin-3d">
+      <button class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">Book a Service</button>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="py-12 bg-gray-100 px-6">
+    <div class="max-w-4xl mx-auto px-6 bg-white rounded-lg p-8">
+      <h2 class="text-2xl font-medium text-red-800 mb-6">Our Process</h2>
+      <div class="flex flex-wrap items-center justify-between gap-6">
+        <div class="flex-1 min-w-[300px]">
+          <p class="text-blue-600 font-bold max-w-3xl mx-auto mb-8">Enjoy ongoing support and expert guidance for your vehicle's health.</p>
+          <p class="text-blue-600 max-w-3xl mx-auto mb-8">
+            Discover how easy it is to maintain your vehicle: find certified mechanics near you, schedule appointments at your convenience, and enjoy personalized care to keep your car running smoothly.
+          </p>
+          <button class="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg shadow hover:bg-blue-600 transition duration-300">
+            Schedule an Appointment
+          </button>
+        </div>
+        <div class="bg-blue-300 flex-1 min-w-[400px] rounded-lg overflow-hidden">
+          <img src="https://th.bing.com/th/id/OIP.4Aq0lcWLK7sd7FHcXGbrMgHaFS?pid=ImgDet&w=183&h=130&c=7?text=How+It+Works" alt="How It Works" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-12 bg-gray-100 px-6">
+    <div class="max-w-4xl mx-auto px-6 bg-blue-50 rounded-lg shadow-lg p-8">
+      <h2 class="text-2xl font-semibold text-red-800 text-center">Our Services</h2>
+      <p class="text-blue-600 font-semibold text-center mt-4 max-w-4xl mx-auto">
+        At our auto repair shop, we provide a comprehensive range of services designed to keep your vehicle safe and reliable. From routine oil changes and brake repairs to advanced engine diagnostics, we are dedicated to offering personalized care that meets your car's unique needs.
+      </p>
+      <div class="flex flex-wrap justify-center gap-6 mt-6 pb-4">
+        <div class="bg-gray-50 p-6 rounded-lg shadow flex-none w-72 flex flex-col items-center text-center justify-between">
+            <div>
+              <img src="https://th.bing.com/th/id/OIP.piGuDaPZyMX1koK7BlD32AHaFO?w=269&h=190&c=7&r=0&o=7&pid=1.7&rm=3"alt="oil changes"class="w-20 h-20 rounded-full mb-4 object-cover mx-auto">
+                <h3 class="text-xl font-semibold text-red-800">Oil Changes</h3>
+                <p class="text-blue-600 font-semibold mt-2">Regular oil and filter changes to keep your engine healthy.</p>
+            </div>
+            <button class="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">Learn More</button>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow flex-none w-72 flex flex-col items-center text-center justify-between">
+            <div>
+  <img src="https://th.bing.com/th/id/OIP.n1ByyTa2T90eYe_Lg8oyLAHaE8?pid=ImgDet&w=183&h=122&c=7&cb=idpwebp1&o=7&rm=3?text=Brakes" alt="Brake Repair" class="w-20 h-20 rounded-full mb-4 object-cover mx-auto">
+                <h3 class="text-xl font-semibold text-red-800">Brake repair</h3>
+                <p class="text-blue-600 font-semibold mt-2">Ensure your safety with our professional brake services.</p>
+            </div>
+            <button class="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us Section -->
+  <section id="why-us" class="py-12 bg-gray-100 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-semibold text-red-800 text-center mb-6">Why Choose Us?</h2>
+      <div class="flex flex-wrap items-center justify-between gap-6">
+        <div class="flex-1 min-w-[300px]">
+          <p class="text-blue-600 text-lg mb-4">
+            Discover how our commitment to quality and customer service sets us apart. We use high-quality parts, employ certified technicians, and believe in transparent pricing to keep your car running and you happy.
+          </p>
+          <button class="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">Learn More</button>
+        </div>
+        <div class="flex-1 min-w-[400px] rounded-lg overflow-x-auto flex justify-center">
+          <img src="https://th.bing.com/th/id/OIP.4spBKlDjeNWDAEpziSi2nQHaE8?w=269&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Certified Mechanic" class="rounded-full w-38 h-38 object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-12 px-6 bg-gray-100">
+    <div class="max-w-4xl mx-auto relative">
+      <div class="overflow-hidden">
+        <div id="testimonial-slides-container" class="flex transition-transform ease-in-out duration-500 gap-8">
+          <div class="bg-blue-200 p-6 rounded-lg shadow-lg flex-none w-full md:w-[48%] lg:w-[32%] flex flex-col justify-center items-center text-center testimonial-card">
+            <h1 class="text-2xl font-bold text-blue-700">Testimonials</h1>
+            <h2 class="text-xl font-semibold text-gray-800">What Our Clients Are Saying?</h2>
+            <p class="text-indigo-700 font-semibold">
+              Hear from our clients who have experienced exceptional auto care tailored to their needs.
+            </p>
+          </div>
+          <div class="bg-green-300 p-6 rounded-lg shadow-lg flex-none w-full md:w-[48%] lg:w-[32%] testimonial-card">
+            <p class="text-blue-800 italic">
+              "This shop has been an absolute game changer for me. The honest advice and modern equipment made my transmission repair quick and affordable. I never imagined visiting a mechanic could feel so trustworthy."
+            </p>
+            <p class="text-gray-800 mt-4 font-semibold">— Alan W., 35</p>
+          </div>
+          <div class="bg-yellow-300 p-6 rounded-lg shadow-lg flex-none w-full md:w-[48%] lg:w-[32%] testimonial-card">
+            <p class="text-blue-800 italic">
+              "I used to dread car repairs, but this place changed all that. Their preventative maintenance program not only keeps my car reliable but also educates me on what to look out for. I always feel welcome and valued here."
+            </p>
+            <p class="text-gray-800 mt-4 font-semibold">— Hezron M., 28</p>
+          </div>
+          <div class="bg-orange-300 p-6 rounded-lg shadow-lg flex-none w-full md:w-[48%] lg:w-[32%] testimonial-card">
+            <p class="text-blue-800 italic">
+              "The team here helped me get my classic car back on the road. From engine tuning to the final polish, their expert guidance made the entire process seamless. I can't stop driving it now!"
+            </p>
+            <p class="text-gray-800 mt-4 font-semibold">— Marius S., 42</p>
+          </div>
+        </div>
+      </div>
+      <button onclick="moveTestimonialSlides(-1)" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full opacity-75 hover:opacity-100 z-10">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button onclick="moveTestimonialSlides(1)" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full opacity-75 hover:opacity-100 z-10">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <script>
+    let testimonialCurrentSlide = 0;
+    const testimonialSlidesContainer = document.getElementById('testimonial-slides-container');
+    const testimonialCards = document.querySelectorAll('#testimonial-slides-container .testimonial-card');
+
+    function updateTestimonialSlider() {
+      if (testimonialCards.length === 0) return;
+      const containerStyle = window.getComputedStyle(testimonialSlidesContainer);
+      const gapValue = parseFloat(containerStyle.columnGap) || 0;
+      const cardWidth = testimonialCards[0].offsetWidth;
+      const translateDistance = cardWidth + gapValue;
+      testimonialSlidesContainer.style.transform = `translateX(${-testimonialCurrentSlide * translateDistance}px)`;
+    }
+
+    function moveTestimonialSlides(direction) {
+      testimonialCurrentSlide += direction;
+      const numSlides = testimonialCards.length;
+      if (testimonialCurrentSlide < 0) {
+        testimonialCurrentSlide = numSlides - 1;
+      } else if (testimonialCurrentSlide >= numSlides) {
+        testimonialCurrentSlide = 0;
+      }
+      updateTestimonialSlider();
+    }
+    window.addEventListener('load', updateTestimonialSlider);
+    window.addEventListener('resize', updateTestimonialSlider);
+  </script>
+
+  <!-- Car Maintenance Tips Section -->
+  <section id="tips" class="py-12 px-6 bg-gray-100 text-center">
+    <h2 class="text-2xl font-semibold text-red-800 mb-6">Car Maintenance Tips</h2>
+    <div class="flex flex-col md:flex-row items-center justify-center mt-4 gap-6">
+      <ul class="text-blue-600 text-left list-disc list-inside max-w-md md:max-w-xl">
+        <li class="mb-2">Check your tire pressure monthly.</li>
+        <li class="mb-2">Check your oil level regularly between changes.</li>
+        <li class="mb-2">Visit your mechanic for routine inspections.</li>
+        <li>Replace your wiper blades annually for clear visibility.</li>
+      </ul>
+      <div class="relative w-full max-w-sm mx-auto md:ml-6 rounded-lg shadow-lg overflow-hidden">
+        <div class="slides-container">
+          <img src="https://th.bing.com/th/id/OIP.gvNa7YKZsS0eH8ZFguXXoQHaL4?pid=ImgDet&w=183&h=294&c=7"?text=Check+Tires" alt="Checking Tires" class="slide w-full h-auto object-cover rounded-lg fade">
+          <img src="https://th.bing.com/th/id/OIP.XXIJBgmdsH97CyG8JlrRcQHaE8?pid=ImgDet&w=183&h=122&c=7?text=Check+Oil" alt="Checking Oil" class="slide w-full h-auto object-cover rounded-lg fade">
+          <img src="https://th.bing.com/th/id/OIP.XXIJBgmdsH97CyG8JlrRcQHaE8?pid=ImgDet&w=183&h=122&c=7?text=Check+Oil" alt="Checking Oil" class="slide w-full h-auto object-cover rounded-lg fade">
+          <img src="https://th.bing.com/th/id/OIP.dkZ9BONJleoKXiBsIYBHlQHaLF?pid=ImgDet&w=183&h=274&c=7?text=mechanic checkups" alt="mechanic checkups"class="slide w-full h-auto object-cover rounded-lg fade">
+          <img src="https://th.bing.com/th/id/OIP.nLxQXAzHTffe9bNtTk8_4gAAAA?pid=ImgDet&w=183&h=274&c=7?text=New+Wipers" alt="Wiper Blades" class="slide w-full h-auto object-cover rounded-lg fade">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let i;
+      let slides = document.getElementsByClassName("slide");
+      if (slides.length === 0) return;
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1 }
+      slides[slideIndex - 1].style.display = "block";
+      slides[slideIndex - 1].classList.add('fade');
+      setTimeout(() => {
+        if(slides[slideIndex - 1]) {
+            slides[slideIndex - 1].classList.remove('fade');
+        }
+      }, 1500);
+      setTimeout(showSlides, 3000);
+    }
+  </script>
+
+  <!-- Explore Section -->
+  <section id="explore" class="py-12 px-6 bg-gray-100">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-medium text-red-800 text-center">Explore Auto Care</h2>
+      <p class="text-blue-400 mt-2 text-center">Explore and learn for more guidance and acquiring more knowledge about auto care.</p>
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-50 p-6 rounded-lg shadow flex flex-col items-start text-left">
+          <img src="https://i.postimg.cc/9MB10qpX/image.png?text=Engine" alt="Engine Health" class="w-20 h-20 rounded-full mb-4 object-cover mx-auto md:mx-0">
+          <h3 class="text-lg font-bold text-red-800">Engine Health</h3>
+          <p class="text-blue-500 mt-2 min-h-[72px]">Learn the secrets to keeping your engine running strong. From regular maintenance to recognizing warning signs, discover tips to enhance your vehicle's lifespan.</p>
+          <button class="mt-4 px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 self-center md:self-center">Explore</button>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow flex flex-col items-start text-left">
+          <img src="https://i.postimg.cc/3Jxfy9Vs/image.png?text=Maintenance" alt="Preventive Maintenance" class="w-40 h-20 rounded-full mb-4 object-cover mx-auto md:mx-0">
+          <h3 class="text-lg font-semibold text-red-800">Preventive Maintenance</h3>
+          <p class="text-blue-500 mt-2 min-h-[72px]">Discover the importance of regular check-ups and fluid changes. Preventive care is key to avoiding costly repairs and keeping your car reliable for years to come.</p>
+          <button class="mt-4 px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition duration-300 self-center md:self-center">Explore</button>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow flex flex-col items-start text-left">
+          <img src="https://placehold.co/100x100/f3f4f6/991b1b?text=Diagnostics" alt="Modern Diagnostics" class="w-40 h-20 rounded-full mb-4 object-cover mx-auto md:mx-0">
+          <h3 class="text-lg font-semibold text-red-800">Modern Diagnostics</h3>
+          <p class="text-blue-500 mt-2 min-h-[72px]">Explore the latest technologies in auto repair. From complex computer diagnostics to advanced tools, see how modern tech is revolutionizing car care.</p>
+          <button class="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 self-center md:self-center">Explore</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Section -->
+  <section id="community" class="py-12 px-6 bg-gray-100">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-semibold text-red-800 mb-4 text-center">Join Our Community</h2>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+        <div class="flex-1 p-6 bg-white rounded-lg shadow-lg flex flex-col justify-between">
+          <h3 class="text-lg font-bold text-blue-500 mb-4"> You are not alone, connect with others who share your passion for cars.</h3>
+          <p class="text-blue-600 font-semibold text-center mb-4">
+            Become part of a vibrant auto care community where you can share experiences, gain insights, and find encouragement to maintain a reliable, safe vehicle.
+          </p>
+          <div class="text-center">
+            <button class="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">
+              Join Community
+            </button>
+          </div>
+        </div>
+        <div class="flex-1 p-6 bg-blue-300 max-w-4xl h-72 shadow-lg flex items-center justify-center">
+          <img src="https://th.bing.com/th/id/OIP.GdqUg9URqka5g0mURQ4lBQHaHa?w=187&h=187&c=7&r=0&o=7&pid=1.7&rm=3?text=Community" alt="Community Image" class="w-40 h-auto max-w-4xl rounded-full object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ / Get Help Section -->
+  <section id="get-help" class="py-12 p-4 px-6 bg-gray-50">
+    <div class="text-center">
+      <h2 class="text-4xl font-semibold text-red-800">Get Help</h2>
+    </div>
+    <div class="max-w-4xl mx-auto flex flex-wrap md:flex-nowrap gap-6 mt-8">
+      <div class="flex-1 bg-white p-6 rounded-lg shadow-lg">
+        <h3 class="text-lg font-bold text-gray-800 mb-4">Frequently Asked Questions</h3>
+        <p class="text-blue-400 font-medium mb-6">
+          "Here are common questions from our clients and our answers for each."
+        </p>
+        <div class="flex flex-col md:flex-row items-center justify-start gap-10">
+          <img src="https://i.postimg.cc/j2Lq2yby/image.png?text=FAQ" alt="Get Help" class="rounded-lg w-full md:w-1/2 object-cover">
+          <div class="space-y-4 w-full md:w-1/2">
+            <div class="p-2 border-b border-gray-200">
+              <button class="w-full text-left font-medium text-gray-700 flex justify-between items-center" onclick="toggleAnswer('answer1')">
+                How to book a service?
+                <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold">+</span>
+              </button>
+              <p id="answer1" class="hidden mt-2 text-gray-600">
+                You can book a service through our website or by calling our front desk.
+              </p>
+            </div>
+            <div class="p-2 border-b border-gray-200">
+              <button class="w-full text-left font-medium text-gray-700 flex justify-between items-center" onclick="toggleAnswer('answer2')">
+                What services are available?
+                <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold">+</span>
+              </button>
+              <p id="answer2" class="hidden mt-2 text-gray-600">
+                We offer a variety of auto services, including maintenance, repairs, and diagnostics.
+              </p>
+            </div>
+            <div class="p-2 border-b border-gray-200">
+              <button class="w-full text-left font-medium text-gray-700 flex justify-between items-center" onclick="toggleAnswer('answer3')">
+                What if I don't know what's wrong?
+                <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold">+</span>
+              </button>
+              <p id="answer3" class="hidden mt-2 text-gray-600">
+                No problem! Our expert technicians use advanced diagnostic tools to accurately identify and fix any issue.
+              </p>
+            </div>
+            <div class="p-2">
+              <button class="w-full text-left font-medium text-gray-700 flex justify-between items-center" onclick="toggleAnswer('answer4')">
+                Do you offer warranties on repairs?
+                <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold">+</span>
+              </button>
+              <p id="answer4" class="hidden mt-2 text-gray-600">
+                Yes, we stand by our work. Most of our repairs come with a nationwide warranty for your peace of mind.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggleAnswer(id) {
+      const answer = document.getElementById(id);
+      if (answer) {
+        answer.classList.toggle('hidden');
+        const buttonSpan = answer.previousElementSibling.querySelector('span');
+        if (buttonSpan) {
+          buttonSpan.textContent = answer.classList.contains('hidden') ? '+' : '-';
+        }
+      }
+    }
+  </script>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-12 px-6 bg-gray-100">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-2xl font-semibold text-red-800">Contact Us</h2>
+      <p class="text-blue-600 mt-4 max-w-3xl mx-auto">We are here to help you with any questions or concerns. Reach out to us anytime!</p>
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+          <h3 class="text-lg font-medium text-gray-800 mb-4">Get in Touch</h3>
+          <p class="text-gray-800 mb-2"><strong>Email:</strong> support@autorepair.com</p>
+          <p class="text-gray-800 mb-2"><strong>Phone:</strong> +(254) 780469913</p>
+          <p class="text-gray-800 mb-4"><strong>Address:</strong>Evans Auto Repair, Nairobi City, 00100</p>
+          <div class="flex justify-center gap-4 mt-6">
+            <a href="https://wa.me/254712345678" target="_blank" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp text-green-500 text-4xl hover:text-green-600 transition duration-300"></i>
+            </a>
+            <a href="https://www.instagram.com/your_auto_page" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram text-pink-500 text-4xl hover:text-pink-600 transition duration-300"></i>
+            </a>
+            <a href="https://www.facebook.com/your_auto_page" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f text-blue-600 text-4xl hover:text-blue-700 transition duration-300"></i>
+            </a>
+          </div>
+          <p class="text-gray-800 mt-4 text-sm">Our dedicated support team is available during business hours to assist you. Feel free to contact us for appointments, emergencies, or general inquiries. Your car's health is our priority.</p>
+        </div>
+    <form>
+        <h3 class="text-lg font-bold text-gray-800 mb-4">Send Us a Message</h3>
+  <div class="mb-4">
+    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+    <input type="email" id="email" name="email" class="shadow appearance-none border-b-2 border-gray-400 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" placeholder="your@example.com">
+  </div>
+
+  <div class="mb-6">
+    <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message:</label>
+    <textarea id="message" name="message" rows="5" class="shadow appearance-none border-b-2 border-gray-400 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 resize-none" placeholder="Enter your message here..."></textarea>
+  </div>
+
+  <div class="flex items-center justify-between">
+    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">
+      Send message
+    </button>
+  </div>
+</form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-12">
+    <div class="max-w-4xl mx-auto px-6 flex flex-wrap md:flex-nowrap gap-8">
+      <div class="flex-1 bg-blue-100 p-6 rounded-lg text-gray-800 shadow-lg">
+        <div class="text-center">
+          <h2 class="text-lg font-semibold mb-4">Auto Care</h2>
+          <nav class="grid grid-cols-2 gap-2 mb-4">
+            <a href="#hero-about" class="text-blue-600 hover:underline">Home</a>
+            <a href="#hero-about" class="text-blue-600 hover:underline">About</a>
+            <a href="#services" class="text-blue-600 hover:underline">Services</a>
+            <a href="#how-it-works" class="text-blue-600 hover:underline">Our Process</a>
+            <a href="#explore" class="text-blue-600 hover:underline">Explore</a>
+            <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
+          </nav>
+          <div class="flex justify-center gap-4 mb-4">
+            <a href="https://www.instagram.com/your_page" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram text-gray-600 text-2xl hover:text-pink-500 transition duration-300"></i>
+            </a>
+            <a href="https://www.facebook.com/your_page" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f text-gray-600 text-2xl hover:text-blue-600 transition duration-300"></i>
+            </a>
+            <a href="https://www.youtube.com/your_channel" target="_blank" aria-label="YouTube">
+              <i class="fab fa-youtube text-gray-600 text-2xl hover:text-red-600 transition duration-300"></i>
+            </a>
+            <a href="https://www.linkedin.com/your_page" target="_blank" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in text-gray-600 text-2xl hover:text-blue-700 transition duration-300"></i>
+            </a>
+          </div>
+          <p class="text-gray-800 bg-blue-300 text-sm py-1 rounded-md">© 2025 Auto Care. All rights reserved.</p>
+          <div class="text-center mt-4">
+            <a href="#" class="text-gray-600 hover:underline text-sm">Terms of Use</a> |
+            <a href="#" class="text-gray-600 hover:underline text-sm">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 bg-gray-700 rounded-lg p-6 flex flex-col justify-center relative md:flex-row md:items-center md:justify-around">
+        <div class="text-center md:text-left">
+          <h2 class="text-2xl font-bold text-orange-500 mb-2">Find Quality,</h2>
+          <h2 class="text-orange-400 text-2xl font-bold mb-2">Honesty,</h2>
+          <h2 class="text-orange-400 text-2xl font-bold mb-6">and Reliability</h2>
+        </div>
+        <div class="flex flex-col justify-center items-center gap-4 mb-6 md:mb-0">
+          <img src="https://i.postimg.cc/sXFgnwtx/image.png?text=Quality+Service" alt="Quality Service Image" class="w-44 h-24 rounded-full shadow-lg object-cover">
+          <div class="text-center">
+            <button class="px-6 py-2 bg-pink-400 text-white font-semibold rounded-full hover:bg-pink-500 transition duration-300">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
